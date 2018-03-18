@@ -1,0 +1,54 @@
+<resources>
+    <string name="app_name">FingerFood</string>
+    <string name="title_activity_login">Sign in</string>
+
+    <string name="facebook_app_id">204695430287692</string>
+    <string name="fb_login_protocol_scheme">fb204695430287692</string>
+
+
+    <!-- Strings related to login -->
+    <string name="prompt_email">Email</string>
+    <string name="prompt_password">Password (optional)</string>
+    <string name="action_sign_in">Sign in or register</string>
+    <string name="action_sign_in_short">Sign in</string>
+    <string name="error_invalid_email">This email address is invalid</string>
+    <string name="error_invalid_password">This password is too short</string>
+    <string name="error_incorrect_password">This password is incorrect</string>
+    <string name="error_field_required">This field is required</string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email
+        completions."
+    </string>
+    <string name="title_activity_preference">PreferenceActivity</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+
+    <string name="action_settings">Settings</string>
+    <string name="title_activity_maps">Map</string>
+
+    <string name="forgot_password_header">Forgot password?</string>
+    <string name="forgot_password_text">We just need your registered Email to sent you password reset instructions.</string>
+    <string name="email_txt">\tEmail</string>
+    <string name="reset_password_txt">Reset Password</string>
+    <string name="password_txt">\tPassword</string>
+    <string name="sign_in_txt">Sign In</string>
+    <string name="register_txt">register</string>
+    <string name="forgot_your_password_btn_txt">Forgot your Password?</string>
+    <string name="sign_in_later_btn_txt">Sign in later</string>
+    <string name="price_range_txt">"price range</string>
+    <string name="distance_txt">distance</string>
+    <string name="user">user</string>
+    <string name="restaurants_txt">Restaurants</string>
+    <string name="dishes_txt">Dishes</string>
+    <string name="first_name_txt">\tFirst Name</string>
+    <string name="last_name_txt">\tLast Name</string>
+    <string name="rest_name">restaurant name</string>
+    <string name="x_txt">X</string>
+    <string name="cancel_txt">Cancel</string>
+    <string name="apply_txt">Apply</string>
+    <string name="favorites_txt">Favorites</string>
+    <string name="sign_out_txt">Sign Out</string>
+    <string name="filter_txt">Filter</string>
+    <string name="enter_registerd_email">"Enter your registered email"</string>
+
+</resources>

@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.ran.fingerfood.Activities.MainActivity"
+    android:weightSum="1"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:background="@color/blueTheme"
+        android:elevation="8dp"
+        android:weightSum="3"
+        >
+
+        <ImageButton
+            android:id="@+id/log_out_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@null"
+            android:src="@drawable/ic_out_white"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            />
+
+
+
+        <ImageButton
+            android:id="@+id/Preference_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_filter"
+            android:background="@null"
+            android:clickable="true"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            />
+
+
+
+        <ImageButton
+            android:id="@+id/favorites_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_star_white"
+            android:background="@null"
+            android:clickable="true"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            android:paddingTop="7dp"
+            android:paddingBottom="7dp"
+            />
+
+
+    </LinearLayout>
+
+
+
+    <com.lorentzos.flingswipe.SwipeFlingAdapterView
+        android:id="@+id/frame"
+        android:background="@null"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:rotation_degrees="15.5"
+        tools:context=".MyActivity"
+        android:layout_weight="1"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="horizontal"
+        android:weightSum="1"
+        android:elevation="8dp"
+
+
+        >
+
+        <ImageButton
+            android:id="@+id/x"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:src="@drawable/ic_dislike_white"
+            android:background="@color/blueTheme"
+            android:paddingTop="5dp"
+            android:paddingBottom="5dp"
+
+            />
+
+        <ImageButton
+            android:id="@+id/v"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="0.5"
+            android:src="@drawable/ic_like_white"
+            android:background="@color/blueTheme"
+
+
+            />
+
+    </LinearLayout>
+
+</LinearLayout>

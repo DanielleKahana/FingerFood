@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="white">#ffffff</color>
+    <color name="grey">#e6e6e6</color>
+    <color name="black">#000000</color>
+    <color name="primaryDark">#292b3d</color>
+    <color name="graylight">#fafafa</color>
+    <color name="startblue">#09c6df</color>
+    <color name="endblue">#0bcce6</color>
+    <color name="clickedGrey">#a1aab7</color>
+    <color name="beige">#F5F5DC</color>
+    <color name="blueberry">#849cce</color>
+    <color name="lightBlue">#e6e9ef</color>
+    <color name="blueTheme">#6c6d8f</color>
+    <color name="photoDialogColor">#2f333f</color>
+</resources>

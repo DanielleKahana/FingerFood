@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1052115781292",
+    "firebase_url": "https://fingerfood-6d51c.firebaseio.com",
+    "project_id": "fingerfood-6d51c",
+    "storage_bucket": "fingerfood-6d51c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1052115781292:android:7a7bae396c5e671e",
+        "android_client_info": {
+          "package_name": "com.example.ran.fingerfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1052115781292-uqpudjtfl2rrl7g2duv3kmu0c8i5k3mf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.ran.fingerfood",
+            "certificate_hash": "dee3d0403f91b8c421aeb2aef4d170844b210199"
+          }
+        },
+        {
+          "client_id": "1052115781292-rqsu2ms8l0offg6t141qn4v82qsq3ge6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBOKhHyFEZUq_nTI_f7hAd9n1YP9RXY2rI"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1052115781292-rqsu2ms8l0offg6t141qn4v82qsq3ge6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
