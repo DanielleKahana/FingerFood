@@ -39,11 +39,17 @@ public class MyDataManager {
     private ValueEventListener mRestsListener;
 
 
+
+    public interface FirebaseCallback{
+        void onCallback(ArrayList<Restaurant> restaurantsList);
+    }
+
     //constructor
     private MyDataManager(){
         setFirebaseDatabase();
-        setAllRestaurants();
     }
+
+
 
     //getInstance
     public static MyDataManager getInstance(){
@@ -53,52 +59,6 @@ public class MyDataManager {
         return mDatabase;
     }
 
-    //Getters and setters
-    public void setAllRestaurants() {
-        allRestaurants = new ArrayList<>();
-        mRestsRef =firebaseDatabase.getReference().child(ALL_RESTS);
-
-
-
-        mRestsListener = new ValueEventListener() {
-
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                //iterating through all the nodes
-                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
-                    Restaurant rest = new Restaurant();
-                    rest.setRestId(postSnapshot.getKey().toString());
-                    rest.setRestName(postSnapshot.child(REST_NAME).getValue().toString());
-                    rest.setKosher((boolean)postSnapshot.child(KOSHER).getValue());
-                    rest.setHasDelivery((boolean)postSnapshot.child(DELIVERY).getValue());
-                    rest.setLatitude((double)postSnapshot.child(LATITUDE).getValue());
-                    rest.setLongitude((double)postSnapshot.child(LONGITUDE).getValue());
-                    rest.setWebSiteUrl((String)postSnapshot.child(WEBSITE).getValue());
-                    rest.setPhoneNumber((String)postSnapshot.child(PHONE_NUMBER).getValue());
-                    rest.setAddress((String)postSnapshot.child(ADDRESS).getValue());
-
-                    String price = (postSnapshot.child(PRICE).getValue().toString());
-                    rest.setPrice(Integer.parseInt(price));
-
-
-                    for (DataSnapshot urlSnapshot  : postSnapshot.child(CARDS).getChildren()){
-                        String cardId = urlSnapshot.getKey().toString();
-                        String imageUrl = urlSnapshot.getValue().toString();
-                        Card card = new Card(cardId,rest.getRestId(), rest.getRestName(), imageUrl);
-                        rest.addCardToList(card);
-                    }
-                    allRestaurants.add(rest);
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        };
-
-        mRestsRef.addListenerForSingleValueEvent(mRestsListener);
-    }
 
 
     public DatabaseReference getRestsRef() {
@@ -128,4 +88,51 @@ public class MyDataManager {
         mRef.child(USER_LAST_NAME).setValue(mLastName);
         mRef.child(USER_LIKES).setValue(0);
     }
+
+
+    public void readData(final FirebaseCallback firebaseCallback){
+        allRestaurants = new ArrayList<>();
+        mRestsRef =firebaseDatabase.getReference().child(ALL_RESTS);
+
+
+
+        mRestsListener = new ValueEventListener() {
+
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                //iterating through all the nodes
+                for (DataSnapshot postSnapshot : dataSnapshot.getChildren()) {
+                    Restaurant rest = new Restaurant();
+                    rest.setRestId(postSnapshot.getKey().toString());
+                    rest.setRestName(postSnapshot.child(REST_NAME).getValue().toString());
+                    rest.setKosher((boolean)postSnapshot.child(KOSHER).getValue());
+                    rest.setHasDelivery((boolean)postSnapshot.child(DELIVERY).getValue());
+                    rest.setLatitude((double)postSnapshot.child(LATITUDE).getValue());
+                    rest.setLongitude((double)postSnapshot.child(LONGITUDE).getValue());
+                    rest.setWebSiteUrl((String)postSnapshot.child(WEBSITE).getValue());
+                    rest.setPhoneNumber((String)postSnapshot.child(PHONE_NUMBER).getValue());
+                    rest.setAddress((String)postSnapshot.child(ADDRESS).getValue());
+                    String price = (postSnapshot.child(PRICE).getValue().toString());
+                    rest.setPrice(Integer.parseInt(price));
+
+                    for (DataSnapshot urlSnapshot  : postSnapshot.child(CARDS).getChildren()){
+                        String cardId = urlSnapshot.getKey().toString();
+                        String imageUrl = urlSnapshot.getValue().toString();
+                        Card card = new Card(cardId,rest.getRestId(), rest.getRestName(), imageUrl);
+                        rest.addCardToList(card);
+                    }
+                    allRestaurants.add(rest);
+                }
+                firebaseCallback.onCallback(allRestaurants);
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        };
+
+        mRestsRef.addListenerForSingleValueEvent(mRestsListener);
+    }
+
+
 }

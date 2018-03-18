@@ -12,7 +12,6 @@ import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.os.CountDownTimer;
 import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
@@ -29,6 +28,7 @@ import android.widget.Toast;
 import com.example.ran.fingerfood.Database.MyDataManager;
 import com.example.ran.fingerfood.Database.UserData;
 import com.example.ran.fingerfood.Logic.NetworkStatus;
+import com.example.ran.fingerfood.Logic.Restaurant;
 import com.example.ran.fingerfood.R;
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -53,6 +53,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 
 
@@ -279,7 +280,7 @@ public class LoginActivity extends AppCompatActivity {
                             ref.child(USER_LAST_NAME).setValue("User");
                             mUserData = UserData.getInstance();
                             mProgressBar.setVisibility(View.VISIBLE);
-                            readData();
+                            goToMainActivity();
                         }
                         else{
                             Toast.makeText(LoginActivity.this , "Authentication failed." , Toast.LENGTH_SHORT).show();
@@ -380,7 +381,7 @@ public class LoginActivity extends AppCompatActivity {
                     }
                     mUserData = UserData.getInstance();
                     mProgressBar.setVisibility(View.VISIBLE);
-                    readData();
+                    goToMainActivity();
                 }
             }
         });
@@ -409,7 +410,7 @@ public class LoginActivity extends AppCompatActivity {
                             ref.child(USER_LAST_NAME).setValue(account.getFamilyName());
                             mUserData = UserData.getInstance();
                             mProgressBar.setVisibility(View.VISIBLE);
-                            readData();
+                            goToMainActivity();
                         }
                     }
                 });
@@ -427,59 +428,27 @@ public class LoginActivity extends AppCompatActivity {
                         else {
                             mUserData = UserData.getInstance();
                             mProgressBar.setVisibility(View.VISIBLE);
-                            readData();
+                            goToMainActivity();
                         }
                     }
                 });
     }
 
 
-    public void readData() {
-        new CountDownTimer(5000, 5000) {
-
-            public void onTick(long millisUntilFinished) {
-            }
-            public void onFinish() {
-               goToMainActivity();
-            }
-        }.start();
-    }
-
-    public void showFailedMessage() {
-        AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage("Sorry, weak internet connection... \nPlease try again soon.")
-                .setCancelable(false)
-                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
-                    public void onClick(DialogInterface dialog, int id) {
-                        dialog.dismiss();
-                    }
-                });
-        AlertDialog alert = builder.create();
-        alert.show();
-    }
-
-
     public void goToMainActivity() {
-        mProgressBar.setVisibility(View.INVISIBLE);
-
-        if (myDataManager.getAllRestaurants().isEmpty()){
-            showFailedMessage();
-            return;
-        }
-        Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putDoubleArray(LOCATION_KEY, mCoordinates);
-        intent.putExtras(bundle);
-        startActivity(intent);
-        finish();
-
-
+        myDataManager.readData(new MyDataManager.FirebaseCallback() {
+            @Override
+            public void onCallback(ArrayList<Restaurant> restaurantsList) {
+                mProgressBar.setVisibility(View.INVISIBLE);
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putDoubleArray(LOCATION_KEY, mCoordinates);
+                intent.putExtras(bundle);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
-
-
-
-
-
 
 
 

@@ -21,7 +21,6 @@
             android:layout_height="150dp"
             android:layout_gravity="center"
             android:focusable="true"
-            android:visibility="invisible"
             android:focusedByDefault="true"
             android:defaultFocusHighlightEnabled="true"
             android:src="@drawable/logo"
